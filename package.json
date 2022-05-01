@@ -7,7 +7,7 @@
   "repository": "https://github.com/Timi-Leyin/waitlist-api.git",
   "author": "Timileyin Oyelekan",
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only server.ts "
+    "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --pretty --transpile-only server.ts "
   },
   "private": true,
   "devDependencies": {
