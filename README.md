@@ -1,0 +1,3 @@
+# Bugs 
+- Express validator (validationResult )
+- 

@@ -1,4 +1,4 @@
-
-export default (req, res )=>{
-  res.status(200).send({message:"Login"})
-}
+import { Request, Response } from 'express';
+export default (req: Request, res: Response) => {
+  res.status(200).send({ message: 'Login' });
+};
