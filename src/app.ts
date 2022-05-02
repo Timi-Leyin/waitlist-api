@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 
 import error from './middlewares/error';
 import authRoute from './routes/auth.route';
-import * as db from './config/db.config';
+//import * as db from './config/db.config';
 /*
  APPLICATION 
  @Express 
@@ -15,7 +15,7 @@ import * as db from './config/db.config';
 const app = express();
 
 dotenv.config();
-db.config();
+// db.config();
 /* Log request only on development mode 👇 */
 process.env.NODE_ENV == 'development' && app.use(morgan('dev'));
 app.use(cors({ origin: '*' }));
