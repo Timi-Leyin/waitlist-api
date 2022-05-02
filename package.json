@@ -8,8 +8,8 @@
   "author": "Timileyin Oyelekan",
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --pretty --transpile-only server.ts ",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "npm run lint --fix",
+    "lint": "eslint src/*.ts",
+    "lint:fix": "eslint src/*.ts --fix",
     "prepare": "husky install"
   },
   "private": true,
