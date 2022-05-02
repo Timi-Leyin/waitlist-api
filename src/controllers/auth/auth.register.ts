@@ -7,10 +7,9 @@ export default async (req: Request, res: Response) => {
     const { email, username, password } = req.body;
     // Check if req body is valid
     const errors = validationResult(req);
-    
-   if (!errors.isEmpty()) return res
-   .status(400)
-   .send({ message: errors.array()[0].msg });
+
+    if (!errors.isEmpty())
+      return res.status(400).send({ message: errors.array()[0].msg });
 
     // check if username or email exists
     const email_exists = await UserModel.findOne({ email });
