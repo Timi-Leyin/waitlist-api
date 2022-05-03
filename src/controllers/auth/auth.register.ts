@@ -4,7 +4,11 @@ import UserModel from '../../models/User';
 
 export default async (req: Request, res: Response) => {
   try {
-    const { email, username, password } = req.body;
+    const {
+      email,
+      username,
+      password,
+    }: { email: string; username: string; password: string } = req.body;
     // Check if req body is valid
     const errors = validationResult(req);
 
