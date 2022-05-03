@@ -1,7 +1,15 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import UserModel from '../../models/User';
-
+import UserModel from '../../models/User1';
+1;
+import bcrypt from 'bcryptjs';
+/*
+interface User {
+  _id: ObjectId, 
+  username:string, 
+  password:string 
+}
+*/
 export default async (req: Request, res: Response) => {
   try {
     const {
@@ -23,9 +31,12 @@ export default async (req: Request, res: Response) => {
         .status(400)
         .send({ message: 'Username or email address already exists ' });
     // Add user if no user exist with email or username
+    /* Hash password */
+    const hashPassword = await bcrypt.hash(password, 10);
+
     const user = new UserModel({});
     console.log(user);
-    console.log({ email, username, password });
+    console.log({ email, username, password: password, Hpassword: hashPassword });
     res.status(201).send({ message: 'Registered  ® ' });
   } catch (err) {
     res.status(500).send({ message: 'An error Occurred' });
