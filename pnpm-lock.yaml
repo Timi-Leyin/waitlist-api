@@ -8,6 +8,7 @@ specifiers:
   '@types/node': ^17.0.30
   '@typescript-eslint/eslint-plugin': ^5.21.0
   '@typescript-eslint/parser': ^5.21.0
+  bcryptjs: ^2.4.3
   body-parser: ^1.20.0
   cookie-parser: ^1.4.6
   cors: ^2.8.5
@@ -29,6 +30,7 @@ specifiers:
   typescript: ^4.6.4
 
 dependencies:
+  bcryptjs: 2.4.3
   body-parser: 1.20.0
   cookie-parser: 1.4.6
   cors: 2.8.5
@@ -406,6 +408,10 @@ packages:
     dependencies:
       safe-buffer: 5.1.2
     dev: true
+
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
