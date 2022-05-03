@@ -10,7 +10,7 @@ export const email = body('email', 'Email is required')
 export const username = body('username', 'Username is Required')
   .escape()
   .isLength({ min: 3 })
-  .withMessage('Username must be at least 3 characters ')
+  .withMessage('Username must be at least 3 characters')
   .matches(/[a-zA-Z]|[0-9]/g)
   .withMessage('Username is not accepted');
 
