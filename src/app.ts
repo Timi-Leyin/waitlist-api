@@ -1,10 +1,11 @@
-import * as dotenv from 'dotenv';
+import dotenv from 'dotenv';
+dotenv.config();
+
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import express from 'express';
 import bodyParser from 'body-parser';
-
 import error from './middlewares/error';
 import authRoute from './routes/auth.route';
 import * as db from './config/db.config';
@@ -13,8 +14,6 @@ import * as db from './config/db.config';
  @Express 
 */
 const app = express();
-
-dotenv.config();
 db.config();
 /* Log request only on development mode 👇 */
 process.env.NODE_ENV == 'development' && app.use(morgan('dev'));

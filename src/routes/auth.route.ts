@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import registerController from '../controllers/auth/auth.register';
 import loginController from '../controllers/auth/auth.login';
-import { email, username, password } from '../common/validator';
+import { email, username, password } from '../common/validations';
 const route = Router();
 
 route.post('/register', [email, username, password], registerController);

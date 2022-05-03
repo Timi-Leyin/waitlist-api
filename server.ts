@@ -1,10 +1,15 @@
 import app from './src/app';
-const PORT = (process.env.PORT || process.env.DEV_PORT || 5500) as number;
+import mongoose from "mongoose"
+
+const PORT = process.env.PORT || process.env.DEV_PORT || 5500 
 
 /*
  * LISTEN 👂
  */
-
+ 
 app.listen(PORT, () => {
-  console.log(`Server is running 🏃‍♂️ on ${process.env.NODE_ENV} mode at ${PORT} `);
+  mongoose.connection.on("connected", ()=> console.log("MongoDB connected "))
+  mongoose.connection.on("disconnected", ()=> console.log("MongoDB disconnected "))
+  mongoose.connection.on("reconnecting", ()=> console.log("MongoDB reconnecting..."))
+  console.log(`Server running on ${process.env.NODE_ENV} mode at ${PORT} `);
 });

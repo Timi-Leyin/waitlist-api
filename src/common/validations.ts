@@ -1,6 +1,7 @@
 import { body } from 'express-validator';
 
-export const email = body('email')
+export const email = body('email', 'Email is required')
+  .notEmpty()
   .trim()
   .normalizeEmail()
   .isEmail()
@@ -8,12 +9,13 @@ export const email = body('email')
 
 export const username = body('username', 'Username is Required')
   .escape()
-  .trim()
   .isLength({ min: 3 })
   .withMessage('Username must be at least 3 characters ')
-  .notEmpty();
+  .matches(/[a-zA-Z]|[0-9]/g)
+  .withMessage('Username is not accepted');
 
 export const password = body('password', 'Password is required')
   .escape()
   .isStrongPassword()
-  .withMessage('Password is not strong enough ');
+  .withMessage('Password is not strong enough ')
+  .notEmpty();

@@ -1,17 +1,14 @@
 import mongoose from 'mongoose';
 
-const MONGODB_URI = 'mongodb://localhost:27017/waitlist';
+const MONGODB_URI = process.env.MONGODB_URI ?? '';
 
-export const config = async (): Promise<boolean | undefined> => {
+export const config = async (db?: string): Promise<void> => {
   try {
-    await mongoose.connect(MONGODB_URI, {
-      //  useNewUrlParser:true,
+    await mongoose.connect(db || MONGODB_URI, {
+      //useNewUrlParser:true,
       //   useUnifiedTopology:true
     });
-    console.log('MongoDB connected');
-    return true;
   } catch (err) {
-    console.log('MongoDB could not connect ');
     process.exit(1);
   }
 };

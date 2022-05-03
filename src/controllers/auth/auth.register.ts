@@ -1,22 +1,18 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import UserModel from '../../models/User1';
-1;
+import UserModel from '../../models/User';
 import bcrypt from 'bcryptjs';
-/*
-interface User {
-  _id: ObjectId, 
-  username:string, 
-  password:string 
-}
-*/
+import jwt from 'jsonwebtoken';
+
+//import {User} from "../../../types/models"
+
 export default async (req: Request, res: Response) => {
   try {
     const {
       email,
       username,
       password,
-    }: { email: string; username: string; password: string } = req.body;
+    }: { email: string; username: number; password: string } = req.body;
     // Check if req body is valid
     const errors = validationResult(req);
 
@@ -32,12 +28,18 @@ export default async (req: Request, res: Response) => {
         .send({ message: 'Username or email address already exists ' });
     // Add user if no user exist with email or username
     /* Hash password */
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashPassword = await bcrypt.hash(password, 1);
 
-    const user = new UserModel({});
-    console.log(user);
-    console.log({ email, username, password: password, Hpassword: hashPassword });
-    res.status(201).send({ message: 'Registered  ® ' });
+    const user = await new UserModel({
+      email,
+      username,
+      password: hashPassword,
+    });
+
+    /* Send token */
+    const SECRET = process.env.SECRET ?? '';
+    const token = await jwt.sign({ id: user._id }, SECRET);
+    res.status(201).send({ message: 'Signed up Successfully', token });
   } catch (err) {
     res.status(500).send({ message: 'An error Occurred' });
   }
