@@ -10,7 +10,7 @@
     "start": "ts-node server.ts",
     "dev": "cross-env NODE_ENV=development ts-node-dev --respawn --cls --rs -- server.ts ",
     "lint": "cross-env NODE_ENV=lint eslint src/ --ext .ts",
-    "lint:fix": "npm run lint --fix ",
+    "lint:fix": "cross-env NODE_ENV=lint eslint src/ --ext .ts --fix ",
     "prepare": "husky install"
   },
   "private": true,
