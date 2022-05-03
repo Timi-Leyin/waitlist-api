@@ -1,0 +1,1 @@
+export default type config = (db?:string)=> Promise<void>
