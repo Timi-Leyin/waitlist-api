@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/bcryptjs': ^2.4.2
   '@types/body-parser': ^1.19.2
   '@types/cors': ^2.8.12
   '@types/express': ^4.17.13
@@ -44,6 +45,7 @@ dependencies:
   rand-token: 1.0.1
 
 devDependencies:
+  '@types/bcryptjs': 2.4.2
   '@types/body-parser': 1.19.2
   '@types/cors': 2.8.12
   '@types/express': 4.17.13
@@ -113,6 +115,10 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+    dev: true
+
+  /@types/bcryptjs/2.4.2:
+    resolution: {integrity: sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==}
     dev: true
 
   /@types/body-parser/1.19.2:
