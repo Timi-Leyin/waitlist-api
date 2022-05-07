@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 export default async (req: Request, res: Response) => {
   try {
-    const { password, email }: { password: string, email:string } = req.body;
+    const { password, username }: { password: string, username :string } = req.body;
     // Check if req body is valid
     const errors = validationResult(req);
 
@@ -16,9 +16,9 @@ export default async (req: Request, res: Response) => {
       return res.status(400).send({ message: errors.array()[0].msg });
 
     // check if  email exists
-    const email_exists = await UserModel.findOne({ email });
+    const email_exists = await UserModel.findOne({ username });
     if (email_exists) {
-      const right_password = await bcrypt.compare(password, email_exists.password);
+      const right_password = await bcrypt.compare(password, email_exists.password) ;
       /* Send token */
       if (right_password) {
       const SECRET = process.env.SECRET ?? '';
@@ -28,7 +28,7 @@ export default async (req: Request, res: Response) => {
       } // if password is correct
     } // block end of exists
 
-    return res.status(400).send({ message: 'Incorrect email address or password' });
+    res.status(400).send({ message: 'Incorrect email address or password' });
   } catch (err) {
     res.status(500).send({ message: 'An error Occurred' });
   }

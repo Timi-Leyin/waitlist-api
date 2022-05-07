@@ -15,7 +15,6 @@ export const username = body('username', 'Username is Required')
   .withMessage('Username is not accepted');
 
 export const password = body('password', 'Password is required')
-  .escape()
   .isStrongPassword()
   .withMessage('Password is not strong enough ')
   .notEmpty();
