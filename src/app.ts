@@ -7,7 +7,10 @@ import helmet from 'helmet';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import verifyToken from "./middlewares/token"
+
 import error from './middlewares/error';
+import appRoute from './routes/app.route';
 import authRoute from './routes/auth.route';
 import * as db from './config/db.config';
 /*
@@ -20,11 +23,12 @@ db.config();
 process.env.NODE_ENV == 'development' && app.use(morgan('dev'));
 app.use(cors({ origin: '*' }));
 app.use(helmet());
-app.use(cookieParser("secret"));
+app.use(cookieParser('secret'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', authRoute);
+app.use('/app',verifyToken, appRoute);
 app.use(error);
 
 export default app;

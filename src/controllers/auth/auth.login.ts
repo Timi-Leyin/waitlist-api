@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 export default async (req: Request, res: Response) => {
   try {
-    const { password, username }: { password: string, username :string } = req.body;
+    const { password, username }: { password: string; username: string } = req.body;
     // Check if req body is valid
     const errors = validationResult(req);
 
@@ -18,12 +18,12 @@ export default async (req: Request, res: Response) => {
     // check if  email exists
     const email_exists = await UserModel.findOne({ username });
     if (email_exists) {
-      const right_password = await bcrypt.compare(password, email_exists.password) ;
+      const right_password = await bcrypt.compare(password, email_exists.password);
       /* Send token */
       if (right_password) {
-      const SECRET = process.env.SECRET ?? '';
+        const SECRET = process.env.SECRET ?? '';
         const token = await jwt.sign({ id: email_exists._id }, SECRET);
-        console.log(req.cookies )
+        console.log(req.cookies);
         return res.status(200).send({ message: 'Logged in successfully', token });
       } // if password is correct
     } // block end of exists

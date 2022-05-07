@@ -35,7 +35,7 @@ export default async (req: Request, res: Response) => {
       username,
       password: hashPassword,
     });
-  user.save()
+    user.save();
     /* Send token */
     const SECRET = process.env.SECRET ?? '';
     const token = await jwt.sign({ id: user._id }, SECRET);
