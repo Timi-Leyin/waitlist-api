@@ -28,14 +28,14 @@ export default async (req: Request, res: Response) => {
         .send({ message: 'Username or email address already exists ' });
     // Add user if no user exist with email or username
     /* Hash password */
-    const hashPassword = await bcrypt.hash(password, 1);
+    const hashPassword = await bcrypt.hash(password, 10);
 
     const user = await new UserModel({
       email,
       username,
       password: hashPassword,
     });
-
+  user.save()
     /* Send token */
     const SECRET = process.env.SECRET ?? '';
     const token = await jwt.sign({ id: user._id }, SECRET);
